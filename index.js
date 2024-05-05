@@ -1,17 +1,22 @@
-function isIsomorphic(s, t) {
-  if (s.length !== t.length) return false;
-  const sMap = new Map();
-  const tMap = new Map();
-  for (let i = 0; i < s.length; i++) {
-    const sChar = s[i];
-    const tChar = t[i];
-    if (
-      (sMap.has(sChar) && sMap.get(sChar) !== tChar) ||
-      (tMap.has(tChar) && tMap.get(tChar) !== sChar)
-    )
-      return false;
-    sMap.set(sChar, tChar);
-    tMap.set(tChar, sChar);
+function permuteUnique(nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+  const used = new Array(nums.length).fill(false);
+  backtrack([]);
+  return result;
+  function backtrack(permutation) {
+    if (permutation.length === nums.length) {
+      result.push([...permutation]);
+      return;
+    }
+    for (let i = 0; i < nums.length; i++) {
+      if (used[i] || (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]))
+        continue;
+      used[i] = true;
+      permutation.push(nums[i]);
+      backtrack(permutation);
+      permutation.pop();
+      used[i] = false;
+    }
   }
-  return true;
 }
