@@ -1,6 +1,1 @@
-const factorialRecursive = (n) => {
-  if (n === 0 || n === 1) {
-    return 1;
-  }
-  return n * factorialRecursive(n - 1);
-};
+const zip = (arr1, arr2) => arr1.map((el, i) => [el, arr2[i]]);
