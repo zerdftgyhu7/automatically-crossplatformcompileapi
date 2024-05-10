@@ -1,1 +1,4 @@
-const zip = (arr1, arr2) => arr1.map((el, i) => [el, arr2[i]]);
+const dropWhile = (arr, func) => {
+  while (arr.length > 0 && !func(arr[0])) arr = arr.slice(1);
+  return arr;
+};
